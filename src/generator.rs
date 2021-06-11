@@ -22,5 +22,6 @@ const HTML_TEMPLATE: &str = include_str!("template.html");
 
 /// Generates documentation for DMN model.
 pub fn generate(_definitions: &Definitions) -> String {
+  //TODO place the generated symbols into this HTML template
   HTML_TEMPLATE.to_string()
 }
