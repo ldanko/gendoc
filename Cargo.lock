@@ -41,25 +41,34 @@ dependencies = [
 ]
 
 [[package]]
-name = "dmntk-common"
-version = "0.0.6"
+name = "convert_case"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6771f1631979d18d98a9d97058bdb0530ad96e8bf9bc3a3ce563b85ca107285b"
+checksum = "6245d59a3e82a7fc217c5828a6692dbc6dfb63a0c8c90495621f7b9d79704a0e"
+
+[[package]]
+name = "dmntk-common"
+version = "0.0.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3cc2951a9ee120ff5dbe0872488e1c5494d6f729dfc4cd2a81f5941439a0069d"
 dependencies = [
  "serde",
  "serde_derive",
  "serde_yaml",
+ "uriparse",
 ]
 
 [[package]]
 name = "dmntk-examples"
 version = "0.0.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "385f06324cc535e7de01c3520f84d963546cf2e11a286ed141c20e3d0479245a"
 
 [[package]]
 name = "dmntk-feel"
-version = "0.0.6"
+version = "0.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3febd3e60ff90e662c7c37f44fc8f140670864aaf0f535184343b2aae9850f52"
+checksum = "850656cf204549c3a50decfc6c67affaea3230f67d1fb7c8df8baa6c80e91097"
 dependencies = [
  "chrono",
  "chrono-tz",
@@ -68,6 +77,30 @@ dependencies = [
  "regex",
  "serde",
  "serde_derive",
+]
+
+[[package]]
+name = "dmntk-feel-grammar"
+version = "0.0.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d5b3d30cc4e6f6f20cf387b6c5f55a44136d58249b9af17463e33ee26c2c1f18"
+dependencies = [
+ "convert_case",
+ "regex",
+ "serde",
+ "serde_derive",
+ "toml",
+]
+
+[[package]]
+name = "dmntk-feel-parser"
+version = "0.0.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6a9475a670bb3457d516c2bbf746cf6f35c1a271e92e5668e22ebe95d3add2e6"
+dependencies = [
+ "dmntk-common",
+ "dmntk-feel",
+ "dmntk-feel-grammar",
 ]
 
 [[package]]
@@ -81,9 +114,13 @@ dependencies = [
 [[package]]
 name = "dmntk-model"
 version = "0.0.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "545ec71beb670cdc344e03aa83a80932349fb948f03171b9fed1dbb79ff94b8c"
 dependencies = [
  "dmntk-common",
+ "dmntk-examples",
  "dmntk-feel",
+ "dmntk-feel-parser",
  "roxmltree",
 ]
 
@@ -92,6 +129,12 @@ name = "dtoa"
 version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56899898ce76aaf4a0f24d914c97ea6ed976d42fec6ad33fcbb0a1103e07b2b0"
+
+[[package]]
+name = "fnv"
+version = "1.0.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 
 [[package]]
 name = "lazy_static"
@@ -241,10 +284,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "toml"
+version = "0.5.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a31142970826733df8241ef35dc040ef98c679ab14d7c3e54d827099b3acecaa"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "unicode-xid"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ccb82d61f80a663efe1f787a51b16b5a51e3314d6ac365b08639f52387b33f3"
+
+[[package]]
+name = "uriparse"
+version = "0.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e515b1ada404168e145ac55afba3c42f04cf972201a8552d42e2abb17c1b7221"
+dependencies = [
+ "fnv",
+ "lazy_static",
+]
 
 [[package]]
 name = "wasi"
