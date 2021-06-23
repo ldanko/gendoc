@@ -51,10 +51,9 @@ fn add_svg_content(html: String, definitions: &Definitions) -> String {
                 svg = format!("{}\n{}", svg, svg_input_data(&shape, input_data));
               } else if let Some(business_knowledge) = definitions.business_knowledge_model_by_id(dmn_element_ref.as_str()) {
                 svg = format!("{}\n{}", svg, svg_business_knowledge(&shape, business_knowledge));
+              } else if let Some(knowledge_source) = definitions.knowledge_source_by_id(dmn_element_ref.as_str()) {
+                svg = format!("{}\n{}", svg, svg_knowledge_source(&shape, knowledge_source));
               }
-              // else if let Some(knowledge_source) = definitions.input_data_by_id(dmn_element_ref.as_str()) {
-              //   svg = format!("{}\n{}", svg, svg_knowledge_source(&shape, knowledge_source));
-              // }
             }
           }
           DmnDiagramElement::DmnEdge(edge) => {
@@ -169,9 +168,8 @@ fn get_points_for_business_knowledge(bounds: &DcBounds) -> String {
 }
 
 /// Generate svg element for Knowledge Source.
-fn svg_knowledge_source(shape: &DmnShape, _knowledge_source: &KnowledgeSource) -> String {
-  let empty = String::new();
-  let text = get_text(shape, &empty);
+fn svg_knowledge_source(shape: &DmnShape, knowledge_source: &KnowledgeSource) -> String {
+  let text = get_text(shape, knowledge_source.name());
   let text_position = get_text_position(&shape.bounds);
   let path = get_path_to_knowledge_source(&shape.bounds);
   let shape_class = get_shape_shared_style_id(&shape);
@@ -186,29 +184,33 @@ fn svg_knowledge_source(shape: &DmnShape, _knowledge_source: &KnowledgeSource) -
 }
 
 fn get_path_to_knowledge_source(bounds: &DcBounds) -> String {
+  let period = 20.0;
+  let period_div_2 = period.div(2.0);
+  let curve_base_height = bounds.y + bounds.height - period_div_2;
   let width_div_4: f64 = bounds.width.div(4.0);
+
   let mut path = format!("M {} {}", bounds.x, bounds.y);
   path = format!("{} L {} {}", path, bounds.x + bounds.width, bounds.y);
-  path = format!("{} L {} {}", path, bounds.x + bounds.width, bounds.y + bounds.height);
+  path = format!("{} L {} {}", path, bounds.x + bounds.width, curve_base_height);
   path = format!(
     "{} C {},{} {},{} {},{}",
     path,
     bounds.x + bounds.width,
-    bounds.y + bounds.height,
+    curve_base_height,
     bounds.x + bounds.width - width_div_4,
-    bounds.y + bounds.height - 30.0,
+    curve_base_height - period,
     bounds.x + bounds.width - width_div_4 * 2.0,
-    bounds.y + bounds.height
+    curve_base_height
   );
   path = format!(
     "{} C {},{} {},{} {},{}",
     path,
     bounds.x + bounds.width - width_div_4 * 2.0,
-    bounds.y + bounds.height,
+    curve_base_height,
     bounds.x + width_div_4,
-    bounds.y + bounds.height + 30.0,
+    curve_base_height + period,
     bounds.x,
-    bounds.y + bounds.height
+    curve_base_height
   );
   path = format!("{} L {} {} Z", path, bounds.x, bounds.y);
 

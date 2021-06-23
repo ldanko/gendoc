@@ -10,4 +10,4 @@ edition = "2018"
 
 [dependencies]
 dmntk-examples = "0.0.7"
-dmntk-model = "0.0.7"
+dmntk-model = "0.0.8"

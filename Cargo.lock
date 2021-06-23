@@ -113,9 +113,9 @@ dependencies = [
 
 [[package]]
 name = "dmntk-model"
-version = "0.0.7"
+version = "0.0.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "545ec71beb670cdc344e03aa83a80932349fb948f03171b9fed1dbb79ff94b8c"
+checksum = "014cf22ec3dd9f849309bc9387daa812cd9aa9cf6252ac318956757ba1f588f7"
 dependencies = [
  "dmntk-common",
  "dmntk-examples",
