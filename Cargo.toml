@@ -2,7 +2,7 @@
 name = "dmntk-gendoc"
 version = "0.0.11"
 authors = ["Dariusz Depta <dariusz.depta@engos.software>"]
-description = "DMNTK | DMN model and parser"
+description = "DMNTK | DMN documentation generator"
 documentation = "https://docs.rs/dmntk-model"
 repository = "https://github.com/dmntk/model.git"
 license = "MIT"
