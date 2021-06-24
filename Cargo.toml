@@ -1,6 +1,6 @@
 [package]
 name = "dmntk-gendoc"
-version = "0.0.7"
+version = "0.0.11"
 authors = ["Dariusz Depta <dariusz.depta@engos.software>"]
 description = "DMNTK | DMN model and parser"
 documentation = "https://docs.rs/dmntk-model"
@@ -9,5 +9,4 @@ license = "MIT"
 edition = "2018"
 
 [dependencies]
-dmntk-examples = "0.0.7"
-dmntk-model = "0.0.8"
+dmntk-model = "0.0.11"

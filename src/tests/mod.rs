@@ -14,7 +14,9 @@
  * SOFTWARE.
  */
 
-use std::{fs::File, io::Write};
+use dmntk_model::dmntk_examples;
+use std::fs::File;
+use std::io::Write;
 
 #[test]
 fn test_2_0001_html() {
