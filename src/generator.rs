@@ -27,12 +27,10 @@ const SVG_CONTENT: &str = "#SVG_CONTENT#";
 
 /// Generates documentation for DMN model.
 pub fn generate(definitions: &Definitions) -> String {
-  let mut html = HTML_TEMPLATE.to_string();
-  html = add_svg_content(html, definitions);
-  html
+  add_svg_content(HTML_TEMPLATE, definitions)
 }
 
-fn add_svg_content(html: String, definitions: &Definitions) -> String {
+fn add_svg_content(html: &str, definitions: &Definitions) -> String {
   let mut svg = String::new();
 
   if let Some(dmndi) = definitions.dmndi() {
@@ -46,13 +44,13 @@ fn add_svg_content(html: String, definitions: &Definitions) -> String {
           DmnDiagramElement::DmnShape(shape) => {
             if let Some(dmn_element_ref) = &shape.dmn_element_ref {
               if let Some(decision) = definitions.decision_by_id(dmn_element_ref.as_str()) {
-                svg = format!("{}\n{}", svg, svg_decision(&shape, decision));
+                svg = format!("{}\n{}", svg, svg_decision(shape, decision));
               } else if let Some(input_data) = definitions.input_data_by_id(dmn_element_ref.as_str()) {
-                svg = format!("{}\n{}", svg, svg_input_data(&shape, input_data));
+                svg = format!("{}\n{}", svg, svg_input_data(shape, input_data));
               } else if let Some(business_knowledge) = definitions.business_knowledge_model_by_id(dmn_element_ref.as_str()) {
-                svg = format!("{}\n{}", svg, svg_business_knowledge(&shape, business_knowledge));
+                svg = format!("{}\n{}", svg, svg_business_knowledge(shape, business_knowledge));
               } else if let Some(knowledge_source) = definitions.knowledge_source_by_id(dmn_element_ref.as_str()) {
-                svg = format!("{}\n{}", svg, svg_knowledge_source(&shape, knowledge_source));
+                svg = format!("{}\n{}", svg, svg_knowledge_source(shape, knowledge_source));
               }
             }
           }
@@ -107,8 +105,8 @@ fn get_shape_label_shared_style_id(shape: &DmnShape) -> String {
 fn svg_decision(shape: &DmnShape, decision: &Decision) -> String {
   let text = get_text(shape, decision.name());
   let text_position = get_text_position(&shape.bounds);
-  let shape_class = get_shape_shared_style_id(&shape);
-  let label_class = get_shape_label_shared_style_id(&shape);
+  let shape_class = get_shape_shared_style_id(shape);
+  let label_class = get_shape_label_shared_style_id(shape);
 
   let mut svg_decision = format!(
     "<rect width=\"{}\" height=\"{}\" x=\"{}\" y=\"{}\" class=\"{}\"/>",
@@ -126,8 +124,8 @@ fn svg_input_data(shape: &DmnShape, input_data: &InputData) -> String {
   let rxy = shape.bounds.height.div(2.0);
   let text = get_text(shape, input_data.name());
   let text_position = get_text_position(&shape.bounds);
-  let shape_class = get_shape_shared_style_id(&shape);
-  let label_class = get_shape_label_shared_style_id(&shape);
+  let shape_class = get_shape_shared_style_id(shape);
+  let label_class = get_shape_label_shared_style_id(shape);
 
   let mut svg_input_data = format!(
     "<rect width=\"{}\" height=\"{}\" x=\"{}\" y=\"{}\" rx=\"{}\" ry=\"{}\" class=\"{}\"/>",
@@ -145,8 +143,8 @@ fn svg_business_knowledge(shape: &DmnShape, business_knowledge: &BusinessKnowled
   let text = get_text(shape, business_knowledge.name());
   let text_position = get_text_position(&shape.bounds);
   let points = get_points_for_business_knowledge(&shape.bounds);
-  let shape_class = get_shape_shared_style_id(&shape);
-  let label_class = get_shape_label_shared_style_id(&shape);
+  let shape_class = get_shape_shared_style_id(shape);
+  let label_class = get_shape_label_shared_style_id(shape);
 
   let mut svg_business_knowledge = format!("<polygon points=\"{}\" class=\"{}\"/>", points, shape_class);
   svg_business_knowledge = format!(
@@ -172,8 +170,8 @@ fn svg_knowledge_source(shape: &DmnShape, knowledge_source: &KnowledgeSource) ->
   let text = get_text(shape, knowledge_source.name());
   let text_position = get_text_position(&shape.bounds);
   let path = get_path_to_knowledge_source(&shape.bounds);
-  let shape_class = get_shape_shared_style_id(&shape);
-  let label_class = get_shape_label_shared_style_id(&shape);
+  let shape_class = get_shape_shared_style_id(shape);
+  let label_class = get_shape_label_shared_style_id(shape);
 
   let mut svg_knowledge_source = format!("<path d=\"{}\" class=\"{}\"/>", path, shape_class);
   svg_knowledge_source = format!(
