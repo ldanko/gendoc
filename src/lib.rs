@@ -14,7 +14,8 @@
  * SOFTWARE.
  */
 
-pub extern crate dmntk_model;
+extern crate dmntk_examples;
+extern crate dmntk_model;
 
 mod generator;
 

@@ -14,7 +14,6 @@
  * SOFTWARE.
  */
 
-use dmntk_model::dmntk_examples;
 use std::fs::File;
 use std::io::Write;
 

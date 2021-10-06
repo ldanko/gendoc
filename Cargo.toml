@@ -2,11 +2,12 @@
 name = "dmntk-gendoc"
 version = "0.0.11"
 authors = ["Dariusz Depta <dariusz.depta@engos.software>"]
-description = "DMNTK | DMN documentation generator"
+description = "DMNTK | Documentation generator"
 documentation = "https://docs.rs/dmntk-model"
 repository = "https://github.com/dmntk/model.git"
 license = "MIT"
 edition = "2018"
 
 [dependencies]
-dmntk-model = "0.0.11"
+dmntk-examples = { path = "../examples" }
+dmntk-model = { path = "../model" }
