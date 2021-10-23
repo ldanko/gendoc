@@ -14,9 +14,23 @@
  * SOFTWARE.
  */
 
+use std::fs::File;
+use std::io::Write;
+
 #[test]
 fn test_2_0001_html() {
-  let definitions = dmntk_model::parse(dmntk_examples::DMN_2_0001, "file://2_0001.dmn").unwrap();
+  let definitions = dmntk_model::parse(dmntk_examples::DMN_2_0001, "file://2_0001.dmn").expect("parsing model 2_0001.dmn failed");
   let html = crate::generate(&definitions);
   assert_eq!("<!DOCTYPE html>", &html[0..15]);
+  let mut file = File::create("./target/2_0001.html").expect("creating file ./target/2_0001.html failed");
+  file.write_all(html.as_bytes()).expect("saving file ./target/2_0001.html failed");
+}
+
+#[test]
+fn test_3_0087_html() {
+  let definitions = dmntk_model::parse(dmntk_examples::DMN_3_0087, "file://3_0087.dmn").expect("parsing model 3_0087.dmn failed");
+  let html = crate::generate(&definitions);
+  assert_eq!("<!DOCTYPE html>", &html[0..15]);
+  let mut file = File::create("./target/3_0087.html").expect("creating file ./target/3_0087.html failed");
+  file.write_all(html.as_bytes()).expect("saving file ./target/2_0001.html failed");
 }

@@ -12,6 +12,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "ascii_tree"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ca6c635b3aa665c649ad1415f1573c85957dfa47690ec27aebe7ec17efe3c643"
+
+[[package]]
 name = "autocfg"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -48,7 +54,7 @@ checksum = "6245d59a3e82a7fc217c5828a6692dbc6dfb63a0c8c90495621f7b9d79704a0e"
 
 [[package]]
 name = "dmntk-common"
-version = "0.0.7"
+version = "0.0.15"
 dependencies = [
  "serde",
  "serde_derive",
@@ -58,12 +64,13 @@ dependencies = [
 
 [[package]]
 name = "dmntk-examples"
-version = "0.0.7"
+version = "0.0.12"
 
 [[package]]
 name = "dmntk-feel"
-version = "0.0.7"
+version = "0.0.15"
 dependencies = [
+ "ascii_tree",
  "chrono",
  "chrono-tz",
  "dmntk-common",
@@ -75,18 +82,15 @@ dependencies = [
 
 [[package]]
 name = "dmntk-feel-grammar"
-version = "0.0.7"
+version = "0.0.15"
 dependencies = [
  "convert_case",
  "regex",
- "serde",
- "serde_derive",
- "toml",
 ]
 
 [[package]]
 name = "dmntk-feel-parser"
-version = "0.0.7"
+version = "0.0.15"
 dependencies = [
  "dmntk-common",
  "dmntk-feel",
@@ -95,7 +99,7 @@ dependencies = [
 
 [[package]]
 name = "dmntk-gendoc"
-version = "0.0.7"
+version = "0.0.11"
 dependencies = [
  "dmntk-examples",
  "dmntk-model",
@@ -103,7 +107,7 @@ dependencies = [
 
 [[package]]
 name = "dmntk-model"
-version = "0.0.7"
+version = "0.0.13"
 dependencies = [
  "dmntk-common",
  "dmntk-examples",
@@ -269,15 +273,6 @@ dependencies = [
  "libc",
  "wasi",
  "winapi",
-]
-
-[[package]]
-name = "toml"
-version = "0.5.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a31142970826733df8241ef35dc040ef98c679ab14d7c3e54d827099b3acecaa"
-dependencies = [
- "serde",
 ]
 
 [[package]]
