@@ -6,7 +6,7 @@ description = "DMNTK | Documentation generator"
 documentation = "https://docs.rs/dmntk-model"
 repository = "https://github.com/dmntk/model.git"
 license = "MIT"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 dmntk-examples = { path = "../examples" }
