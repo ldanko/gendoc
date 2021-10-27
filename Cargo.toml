@@ -1,6 +1,6 @@
 [package]
 name = "dmntk-gendoc"
-version = "0.0.20"
+version = "0.0.21"
 authors = ["Dariusz Depta <dariusz.depta@engos.software>"]
 description = "DMNTK | Documentation generator"
 documentation = "https://docs.rs/dmntk-model"
